@@ -54,4 +54,20 @@ describe PagesController do
     end
   end
 
+  describe "GET 'help'" do
+    it "should be successful" do
+      get 'help'
+      response.should be_success
+    end
+    it "should have title" do
+      get 'help'
+      response.should have_selector( "title", 
+                   :content => "#{@base_title} | Help" )
+    end
+    it "should have content in the body tag" do
+      get 'help'
+      response.body.should_not =~ /<body>\s*<\/body>/
+    end
+  end
+
 end
